@@ -78,6 +78,19 @@ srun --container-mount-home\
      ${COMMAND}
 ```
 
+## Cleanup
+
+Cleaning up your containers on a particular node should only be done when you have no jobs running on that node. This process can be useful if you're trying to debug why something isn't working
+
+```
+srun -w <node_name1>,<node_name2> --cores=1 --mem=1G --time=00:10:00 rm -r /tmp/enroot-data/user-$(id -u)
+```
+
+Or to have it scheduled (ensure you edit which node you are using):
+```
+sbatch clean_pyxis.bash
+```
+
 ## Admin notes
 - Pyxis must be installed on all machines
 - Enroot must be on all compute nodes
