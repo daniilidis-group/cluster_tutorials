@@ -243,3 +243,33 @@ In addition, you can always use venv for your specific use case. It is recommend
 cd /scratch/<username>/virtual_envs
 python3 -m venv test
 ```
+
+
+# Helpful Debugging Tools
+
+If you want to see how many cpus and gpus each node has/how many are allocated, you can run the following command.
+```
+scontrol show node
+```
+This will display a list of all of the nodes and information about them. An example output is shown below.
+
+```
+NodeName=node-2080ti-3 Arch=x86_64 CoresPerSocket=20 
+   CPUAlloc=10 CPUTot=40 CPULoad=8.42
+   AvailableFeatures=(null)
+   ActiveFeatures=(null)
+   Gres=gpu:rtx2080ti:4(S:0)
+   NodeAddr=node-2080ti-3 NodeHostName=node-2080ti-3 Version=19.05.5
+   OS=Linux 4.15.0-108-generic #109-Ubuntu SMP Fri Jun 19 11:33:10 UTC 2020 
+   RealMemory=92000 AllocMem=0 FreeMem=59361 Sockets=1 Boards=1
+   State=MIXED ThreadsPerCore=2 TmpDisk=0 Weight=1 Owner=N/A MCS_label=N/A
+   Partitions=compute,kostas-compute 
+   BootTime=2020-06-29T13:54:09 SlurmdStartTime=2020-07-11T11:24:16
+   CfgTRES=cpu=40,mem=92000M,billing=40,gres/gpu=4
+   AllocTRES=cpu=10,gres/gpu=3
+   CapWatts=n/a
+   CurrentWatts=0 AveWatts=0
+   ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
+```
+For this node, the second line shows the allocated vs total cpus.  The total number and type of gpus is shown under `Gres`.  The number of allocated gpus is shown under `AllocTRES`.
+
