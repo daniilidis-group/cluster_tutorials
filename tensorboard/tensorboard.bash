@@ -2,6 +2,7 @@
 #SBATCH --qos=viz
 #SBATCH --partition=viz
 #SBATCH --cores=1
+#SBATCH --mem=2G
 
 PORT_MAP=/tmp/tensorboard_port_map
 
