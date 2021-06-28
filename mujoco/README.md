@@ -17,6 +17,9 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/mujoco-kostas/mujoco200_linux/bin
 # For mujoco_py:
 export MUJOCO_PY_MUJOCO_PATH=/opt/mujoco-kostas/mujoco200_linux
 export MUJOCO_PY_MJKEY_PATH=/opt/mujoco-kostas/mjkey.txt
+# If you want to use DM Control Suite, also specify:
+export MJLIB_PATH=/opt/mujoco-kostas/mujoco200_linux/bin/libmujoco.so
+export MJKEY_PATH=/opt/mujoco-kostas/mjkey.txt
 ```
 
 Once you set up the environment variables, you should be able to use the mujoco library. You might want to use a python wrapper around it, such as OpenAI's [mujoco_py](https://github.com/openai/mujoco-py) or [DeepMind Control Suite](https://github.com/deepmind/dm_control). Install mujoco_py as follows:
