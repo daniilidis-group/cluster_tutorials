@@ -136,6 +136,7 @@ The list of types:
 |  gtxtitanx   |   Maxwell    | 12GB |
 |  gtx1080ti   |   Pascal     | 11GB |
 |  rtx2080ti   |   Turing     | 11GB |
+|  rtx3090     |   Ampere     | 24GB |
 |v100-dgxs-16gb|   Volta      | 16GB |
 
 
