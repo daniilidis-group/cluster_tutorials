@@ -6,6 +6,7 @@
 # Tutorials
 
 - [Getting an account](https://github.com/daniilidis-group/cluster_tutorials/tree/master/managing_users)
+- [Intro](https://github.com/daniilidis-group/cluster_tutorials/tree/master/intro)
 - [Intro to SLURM](https://github.com/daniilidis-group/cluster_tutorials/tree/master/slurm_intro)
 - [Some notes about storage](https://github.com/daniilidis-group/cluster_tutorials/tree/master/beegfs)
 - [mujoco](https://github.com/daniilidis-group/cluster_tutorials/tree/master/mujoco)

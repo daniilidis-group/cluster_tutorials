@@ -23,7 +23,7 @@ These pools are distributed across multiple machines and provide a single unifie
 Your quota gets printed out whenever you make a new shell on kostas-ap. This is live up to date information. To get a new usage amount:
 
 ```
-beegfs-ctl --getquota --uid=$(id -u)
+beegfs-ctl --getquota --uid $(id -u)
 ```
 
 ### Finding files with BeeGFS filters
