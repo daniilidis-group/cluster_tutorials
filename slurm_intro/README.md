@@ -273,3 +273,11 @@ NodeName=node-2080ti-3 Arch=x86_64 CoresPerSocket=20
 ```
 For this node, the second line shows the allocated vs total cpus.  The total number and type of gpus is shown under `Gres`.  The number of allocated gpus is shown under `AllocTRES`.
 
+
+# Reservations
+
+If you want to see what reservations are currently using gpus, you can check with
+```
+scontrol show reservation
+```
+This will display a list of the reservations, which gpus they include, and which users own them.
