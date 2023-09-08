@@ -7,10 +7,8 @@ All nodes in the systems are assigned to one or more partitions that are availab
 
 |     Partition    | Time Limit | Valid QOSs              | Nodes                            | Default |
 |------------------|------------|-------------------------|----------------------------------|---------|
-|  compute         |    02:00:00| low                     |               ALL                |   YES   |
-|  debug           |    04:00:00| debug                   | node-1080ti-[0-2], node-2080ti-0 |    NO   |
-|  viz             | 14-00:00:00| viz                     | tensorboard-0                    |    NO   |
-| \<prof\>-compute   | 14-00:00:00| varies                  | Professor Specific               |    NO   |
+|  batch           |  1-00:00:00| normal                  |               ALL                |   YES   |
+| \<prof\>-compute | 14-00:00:00| varies                  | Professor Specific               |    NO   |
 
 
 To view the current state of each partition:
@@ -41,8 +39,6 @@ Running invidual commands in a blocking manner is often too cumbersome for any l
 #SBATCH --cpus-per-gpu=4
 #SBATCH --gpus=1
 #SBATCH --time=00:10:00
-#SBATCH --qos=low
-#SBATCH --partition=compute
 
 hostname
 nvidia-smi
@@ -88,11 +84,9 @@ You will see all of the currently running jobs and scheduled jobs when running t
 
 Depending on your affiliation, you will have at least 3 QOSs available to you:
 
-| QOS | # GPUs | Preempts | Exempt Time | Max GPU Min Per Job | Max Jobs | Max Submit Jobs | Priority | Usage Factor | Default |
-|-----|--------|----------|-------------|---------------------|----------|-----------------|----------|--------------|---------|
-|  low|   40   |          |  00:30:00   |         120         |   50     |      200        |    10    |       1      |   YES   |
-|debug|    1   |   low    |             |                     |    1     |        1        |    40    |       1      |    NO   |
-|  viz|    0   |          |             |                     |    4     |        4        |    10    |       1      |    NO   |
+| QOS  | # GPUs | Preempts | Exempt Time | Max GPU Min Per Job | Max Jobs | Max Submit Jobs | Priority | Usage Factor | Default |
+|------|--------|----------|-------------|---------------------|----------|-----------------|----------|--------------|---------|
+|normal|        |          |  00:30:00   |                     |   60     |      120        |    1     |       10     |   YES   |
 
 Professors who have their own resources have defined their own QOS to ensure equitable distribution of resources within their group. Examples are as follows:
 
@@ -132,11 +126,13 @@ The list of types:
 
 |      Name    | Architecture | VRAM |
 |--------------|--------------|------|
-|  gtxtitanz   |   Kepler     |  6GB |
-|  gtxtitanx   |   Maxwell    | 12GB |
-|  gtx1080ti   |   Pascal     | 11GB |
-|  rtx2080ti   |   Turing     | 11GB |
-|v100-dgxs-16gb|   Volta      | 16GB |
+| geforce_rtx_2080_ti   |   Turing     | 11GB |
+| rtx_a6000 | Ampere | 48GB |
+| a40       | Ampere | 48GB |
+| a10       | Ampere | 24GB |
+| geforce_rtx_3090 | Ampere | 24GB |
+| l40 | Lovelace | 48GB |
+
 
 
 ### Requesting a specific node
@@ -158,7 +154,6 @@ You will need to make a file that contains the parameters of the batch of jobs:
 #SBATCH --gpus=1
 #SBATCH --array=0-3
 #SBATCH --time=00:10:00
-#SBATCH --qos=low
 
 hostname
 nvidia-smi
@@ -206,7 +201,6 @@ This is an example in bash to create a job array with 4 elements that repeats fo
 #SBATCH --gpus=1
 #SBATCH --array=0-3
 #SBATCH --time=00:10:00
-#SBATCH --qos=low
 
 hostname
 nvidia-smi
@@ -223,9 +217,9 @@ We provide the following packages installed on the base of every machine:
 
 | Name    | Version |
 |---------|---------|
-| Python  |  3.6    |
-| Pytorch |  1.4    |
-| Tensorflow | 1.15 |
+| Python  |  3.10   |
+| Pytorch |  1.13   |
+| Tensorflow | 2.0 |
 
 If the following command:
 ```
